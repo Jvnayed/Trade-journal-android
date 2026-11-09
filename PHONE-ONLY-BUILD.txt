@@ -1,0 +1,43 @@
+BUILD YOUR APK USING ONLY YOUR ANDROID PHONE
+
+This project includes a GitHub Actions workflow. GitHub's cloud computer will compile the APK; you do not need Android Studio or a PC.
+
+YOU NEED
+- A GitHub account.
+- Your Android phone and Chrome.
+- Termux from F-Droid or the official Termux GitHub releases (avoid unofficial APK sites).
+
+PART 1 — CREATE A GITHUB REPOSITORY
+1. In Chrome, open https://github.com and sign in or create an account.
+2. Create a new repository named trade-journal-android. Choose Private if you want the source private. Create it without a README, license, or .gitignore.
+3. Open the new empty repository and copy its HTTPS URL. It looks like https://github.com/YOUR-USERNAME/trade-journal-android.git .
+
+PART 2 — PUSH THIS PROJECT FROM YOUR PHONE
+1. Install and open Termux. Run:
+   termux-setup-storage
+   pkg update -y
+   pkg install git unzip -y
+2. Allow Termux file access when Android asks.
+3. Extract Trade-Journal-Android-Project.zip using your phone's Files app or another archive app. Keep the extracted folder named trade-journal-android in Download.
+4. In Termux, run:
+   cd ~/storage/downloads/trade-journal-android
+   git init -b main
+   git add .
+   git -c user.name="Android Builder" -c user.email="builder@example.com" commit -m "Add Trade Journal Android project"
+   git remote add origin https://github.com/YOUR-USERNAME/trade-journal-android.git
+   git push -u origin main
+   Replace YOUR-USERNAME with your GitHub username. When Git asks for a password, use a GitHub Personal Access Token (PAT), not your GitHub account password. Create a fine-grained token on GitHub with access limited to this repository and Contents: Read and write. Keep the token private; do not paste it into ChatGPT or share it.
+
+PART 3 — DOWNLOAD THE APK
+1. In Chrome, open your GitHub repository.
+2. Tap Actions, then Build Trade Journal APK.
+3. Open the latest successful run (green check mark). Wait until it finishes.
+4. Scroll to Artifacts and tap Trade-Journal-debug-APK to download the ZIP artifact.
+5. Extract that downloaded artifact ZIP. It contains app-debug.apk.
+6. Tap app-debug.apk and follow Android's installation prompts. If Android blocks it, allow your browser or file manager to install unknown apps, then retry.
+
+NOTES
+- The workflow creates a debug APK suitable for installing on your own phone, not a Play Store release.
+- Keep the GitHub repository private if you do not want to publish the app source.
+- Your trade records remain in local app storage. Uninstalling or clearing app data may erase them. Keep backups separately.
+- Do not share your GitHub token. Revoke it in GitHub settings if it is exposed.
